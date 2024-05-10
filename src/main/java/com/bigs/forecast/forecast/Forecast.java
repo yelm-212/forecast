@@ -2,8 +2,7 @@ package com.bigs.forecast.forecast;
 
 import javax.persistence.*;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -11,6 +10,8 @@ import java.util.Date;
 @Entity
 @Builder
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "forecast")
 public class Forecast {
 

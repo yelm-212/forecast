@@ -2,6 +2,7 @@ package com.bigs.forecast.forecast;
 
 
 import com.bigs.forecast.address.AddressService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.parser.ParseException;
 import org.springframework.http.HttpStatus;
@@ -20,19 +21,17 @@ public class ForecastController {
     }
 
     @PostMapping("/")
-    public ResponseEntity postForecast(@RequestParam(required = false, defaultValue = "문충로74")
-                                     String address) throws ParseException {
+    public ResponseEntity postForecast(@RequestParam(required = false, defaultValue = "62") int nx,
+                                       @RequestParam(required = false, defaultValue = "130") int ny) throws ParseException, JsonProcessingException {
 
 
-        return forecastService.createForecast(address);
+        return forecastService.createForecast(nx, ny);
     }
 
     @GetMapping("/")
-    public ResponseEntity getForecast(@RequestParam(required = false, defaultValue = "문충로74")
-                                          String address){
+    public ResponseEntity getForecast(@RequestParam(required = false, defaultValue = "62") int nx,
+                                      @RequestParam(required = false, defaultValue = "130") int ny){
 
-
-        // DB에 해당 지역 단기예보 저장되지 않은 경우
-        return forecastService.getForecast(address);
+        return forecastService.getForecast(nx,ny);
     }
 }
