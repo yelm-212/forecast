@@ -6,8 +6,8 @@ buildscript {
 
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.2.5'
-	id 'io.spring.dependency-management' version '1.1.4'
+	id 'org.springframework.boot' version '2.7.13'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
@@ -15,7 +15,7 @@ group = 'com.bigs'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '17'
+	sourceCompatibility = '11'
 }
 
 configurations {
@@ -45,6 +45,11 @@ dependencies {
 
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+	// gradle 이용시
+	implementation 'org.apache.httpcomponents:httpcore:4.4.15'
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+
 }
 
 def querydslDir = "$buildDir/generated/querydsl"

@@ -23,3 +23,7 @@ spring:
     level:
       org.hibernate.SQL: debug
       org.springframework.jdbc: debug
+
+openapi:
+  forecast-key: 3zQSv0nZcHPFNenjAZIVL0h2XWwxqOCDCdTXwcQHbT6vrTX7uZu8b8c6SIY8IgzkBLbcSAEBgcUzLrzMTqfF3g%3D%3D
+
