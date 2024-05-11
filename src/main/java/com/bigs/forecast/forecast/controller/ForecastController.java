@@ -19,7 +19,7 @@ public class ForecastController {
         return "hello";
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity postForecast(@RequestParam(required = false, defaultValue = "62") int nx,
                                        @RequestParam(required = false, defaultValue = "130") int ny,
                                        @RequestParam(required = false, defaultValue = "1") int page) throws ParseException, JsonProcessingException {
@@ -28,10 +28,11 @@ public class ForecastController {
         return forecastService.createForecast(nx, ny, page);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity getForecast(@RequestParam(required = false, defaultValue = "62") int nx,
-                                      @RequestParam(required = false, defaultValue = "130") int ny){
+                                      @RequestParam(required = false, defaultValue = "130") int ny,
+                                      @RequestParam(required = false, defaultValue = "1") int page){
 
-        return forecastService.getForecast(nx,ny);
+        return forecastService.getForecast(nx,ny, page);
     }
 }

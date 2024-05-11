@@ -2,13 +2,18 @@ package com.bigs.forecast.forecast.service;
 
 
 import com.bigs.forecast.config.AppConfig;
+import com.bigs.forecast.forecast.dto.ForecastDto;
 import com.bigs.forecast.forecast.entity.Forecast;
+import com.bigs.forecast.forecast.repository.ForecastQueryRepository;
 import com.bigs.forecast.forecast.repository.ForecastRepository;
+import com.bigs.forecast.util.MultiResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import lombok.RequiredArgsConstructor;
@@ -29,20 +34,22 @@ public class ForecastService {
     private final AppConfig appConfig;
     private final ForecastRepository forecastRepository;
 
+    private final ForecastQueryRepository queryRepository;
+
     @Autowired
     private final RestTemplate restTemplate;
     @Autowired
     private final ObjectMapper objectMapper;
 
-    public ResponseEntity getForecast(int nx, int ny) {
-        List<Forecast> forecasts = forecastRepository.findAll();
+    public ResponseEntity getForecast(int nx, int ny, int page) {
+        Page<ForecastDto.Response> forecasts = queryRepository.getForecasts(PageRequest.of(page - 1, 14));
 
         if (forecasts.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
         // TODO: forecasts를 반환하도록 수정 예정
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(new MultiResponseDto<>(forecasts.getContent(), forecasts));
     }
 
     public ResponseEntity createForecast(int nx, int ny, int pageNo) throws ParseException {
