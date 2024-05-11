@@ -1,4 +1,4 @@
-package com.bigs.forecast.forecast;
+package com.bigs.forecast.forecast.entity;
 
 import javax.persistence.*;
 

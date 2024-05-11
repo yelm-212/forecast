@@ -1,4 +1,4 @@
-package com.bigs.forecast.forecast;
+package com.bigs.forecast.forecast.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,8 +1,7 @@
-package com.bigs.forecast.forecast;
+package com.bigs.forecast.forecast.repository;
 
+import com.bigs.forecast.forecast.entity.Forecast;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 public interface ForecastRepository extends JpaRepository<Forecast, Long> {
 }
